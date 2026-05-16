@@ -1,0 +1,50 @@
+.settings-page {
+  margin-left: 240px;
+  padding: 40px;
+}
+
+.settings-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.settings-content h1 {
+  font-size: 42px;
+  color: #032b41;
+  margin-bottom: 32px;
+}
+
+.settings-row {
+  padding: 24px 0;
+  border-top: 1px solid #dbe5e8;
+}
+
+.settings-row h3 {
+  font-size: 24px;
+  color: #032b41;
+  margin-bottom: 8px;
+}
+
+.settings-row p {
+  color: #5b6b79;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .settings-page {
+    margin-left: 0;
+    padding: 96px 20px 32px;
+  }
+
+  .settings-content h1 {
+    font-size: 36px;
+  }
+
+  .settings-row h3 {
+    font-size: 20px;
+  }
+
+  .settings-row p {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,96 @@
+.book-page {
+  margin-left: 240px;
+  padding: 40px;
+}
+
+.book-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.book-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.book-info {
+  flex: 1;
+}
+
+.premium-pill {
+  margin-left: 12px;
+  font-size: 14px;
+  background: #032b41;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+.book-stats {
+  margin: 20px 0;
+}
+
+.read-button {
+  background: #032b41;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+.book-cover {
+  width: 250px;
+}
+
+.book-tags span {
+  display: inline-block;
+  background: #f1f6f4;
+  padding: 8px 12px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.book-text {
+  line-height: 1.6;
+  max-width: 900px;
+}
+
+@media (max-width: 768px) {
+  .book-page {
+    margin-left: 0;
+    padding: 96px 20px 32px;
+  }
+
+  .book-top {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+
+  .book-cover {
+    width: 220px;
+  }
+
+  .premium-pill {
+    display: inline-block;
+    margin-top: 8px;
+  }
+}
+.library-button {
+  background: transparent;
+  color: #032b41;
+  border: 2px solid #032b41;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-left: 12px;
+}
+.library-message {
+  margin-top: 12px;
+  color: #2bd97c;
+  font-weight: 600;
+}
