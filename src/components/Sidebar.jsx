@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   FiHome,
   FiBookmark,
@@ -35,38 +36,38 @@ function Sidebar() {
         <h1 className="sidebar-logo">📚 Summarist</h1>
 
         <nav className="sidebar-nav">
-          <a href="/for-you" className="sidebar-link">
+          <Link to="/for-you" className="sidebar-link">
             <FiHome />
             <span>For you</span>
-          </a>
+          </Link>
 
-          <a href="/library" className="sidebar-link">
+          <Link to="/library" className="sidebar-link">
             <FiBookmark />
             <span>My Library</span>
-          </a>
+          </Link>
 
-          <a href="/library" className="sidebar-link">
+          <Link to="/library" className="sidebar-link">
             <FiEdit />
             <span>Highlights</span>
-          </a>
+          </Link>
 
-          <a href="/for-you" className="sidebar-link">
+          <Link to="/for-you" className="sidebar-link">
             <FiSearch />
             <span>Search</span>
-          </a>
+          </Link>
         </nav>
       </div>
 
       <div className="sidebar-bottom">
-        <a href="/settings" className="sidebar-link">
+        <Link to="/settings" className="sidebar-link">
           <FiSettings />
           <span>Settings</span>
-        </a>
+        </Link>
 
-        <a href="/" className="sidebar-link">
+        <Link to="/" className="sidebar-link">
           <FiHelpCircle />
           <span>Help & Support</span>
-        </a>
+        </Link>
 
         {user ? (
           <button className="sidebar-button" onClick={handleLogout}>
@@ -74,10 +75,10 @@ function Sidebar() {
             <span>Logout</span>
           </button>
         ) : (
-          <a href="/" className="sidebar-link">
+          <Link to="/" className="sidebar-link">
             <FiLogIn />
             <span>Login</span>
-          </a>
+          </Link>
         )}
       </div>
     </aside>
