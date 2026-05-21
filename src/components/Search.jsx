@@ -1,28 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiSearch, FiX } from "react-icons/fi";
 
 function Search() {
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [books, setBooks] = useState([]);
 
-  function handleSearch(e) {
-    const value = e.target.value;
-    setSearch(value);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 500);
 
-    if (value.length < 2) {
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  useEffect(() => {
+    if (debouncedSearch.length < 2) {
       setBooks([]);
       return;
     }
 
     fetch(
-      `https://us-central1-summaristt.cloudfunctions.net/getBooksByAuthorOrTitle?search=${value}`
+      `https://us-central1-summaristt.cloudfunctions.net/getBooksByAuthorOrTitle?search=${debouncedSearch}`
     )
       .then((res) => res.json())
-      .then((data) => setBooks(data));
-  }
+      .then((data) => setBooks(data))
+      .catch(() => setBooks([]));
+  }, [debouncedSearch]);
 
   function clearSearch() {
     setSearch("");
+    setDebouncedSearch("");
     setBooks([]);
   }
 
@@ -31,7 +39,7 @@ function Search() {
       <div style={searchBoxStyle}>
         <input
           value={search}
-          onChange={handleSearch}
+          onChange={(e) => setSearch(e.target.value)}
           placeholder="Search for books"
           style={inputStyle}
         />
@@ -59,7 +67,6 @@ function Search() {
     </div>
   );
 }
-
 const searchWrapperStyle = {
   width: "400px",
   marginLeft: "auto",

@@ -1,8 +1,19 @@
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 import Sidebar from "../components/Sidebar";
+import { auth } from "../firebase";
 import "./Settings.css";
 
 function Settings() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <>
@@ -15,14 +26,14 @@ function Settings() {
           <div className="settings-row">
             <div>
               <h3>Your Subscription plan</h3>
-              <p>premium-plus</p>
+              <p>{user ? "Premium Plus" : "No Active Plan"}</p>
             </div>
           </div>
 
           <div className="settings-row">
             <div>
               <h3>Email</h3>
-              <p>{user?.email || "guest@gmail.com"}</p>
+              <p>{user?.email || "Guest User"}</p>
             </div>
           </div>
         </section>

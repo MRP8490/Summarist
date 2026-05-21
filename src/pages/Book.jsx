@@ -39,15 +39,26 @@ function Book() {
 }
 
   if (!book) {
-    return (
-      <>
-        <Sidebar />
-        <main className="book-page">
-          <h1>Loading...</h1>
-        </main>
-      </>
-    );
-  }
+  return (
+    <>
+      <Sidebar />
+      <main className="book-page">
+        <Search />
+
+        <section className="book-content">
+          <div className="book-skeleton">
+            <div className="skeleton skeleton-title"></div>
+            <div className="skeleton skeleton-subtitle"></div>
+            <div className="skeleton skeleton-text"></div>
+            <div className="skeleton skeleton-button"></div>
+          </div>
+
+          <div className="skeleton skeleton-cover"></div>
+        </section>
+      </main>
+    </>
+  );
+}
 
   return (
     <>

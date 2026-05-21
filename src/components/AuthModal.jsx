@@ -1,36 +1,42 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInAnonymously,
+} from "firebase/auth";
+import { auth } from "../firebase";
 import "./AuthModal.css";
 
 function AuthModal({ onClose }) {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  function handleGuestLogin() {
-    localStorage.setItem("user", JSON.stringify({ email: "guest@gmail.com" }));
+  async function handleGuestLogin() {
+    await signInAnonymously(auth);
     onClose();
     navigate("/for-you");
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setError("");
 
-    if (!email.includes("@")) {
-      alert("Invalid email");
-      return;
+    try {
+      if (isLogin) {
+        await signInWithEmailAndPassword(auth, email, password);
+      } else {
+        await createUserWithEmailAndPassword(auth, email, password);
+      }
+
+      onClose();
+      navigate("/for-you");
+    } catch (err) {
+      setError("Invalid email or password. Please try again.");
     }
-
-    if (password.length < 6) {
-      alert("Password must be at least 6 characters");
-      return;
-    }
-
-    localStorage.setItem("user", JSON.stringify({ email }));
-    onClose();
-    navigate("/for-you");
   }
 
   return (
@@ -48,8 +54,11 @@ function AuthModal({ onClose }) {
 
         <div className="auth-divider">or</div>
 
+        {error && <p className="auth-error">{error}</p>}
+
         <input
           placeholder="Email Address"
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />

@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import {
-  FiBookOpen,
+  FiHome,
   FiBookmark,
   FiEdit,
   FiSearch,
@@ -8,13 +9,23 @@ import {
   FiLogIn,
   FiLogOut,
 } from "react-icons/fi";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../firebase";
 import "./Sidebar.css";
 
 function Sidebar() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState(null);
 
-  function handleLogout() {
-    localStorage.removeItem("user");
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  async function handleLogout() {
+    await signOut(auth);
     window.location.href = "/";
   }
 
@@ -25,7 +36,7 @@ function Sidebar() {
 
         <nav className="sidebar-nav">
           <a href="/for-you" className="sidebar-link">
-            <FiBookOpen />
+            <FiHome />
             <span>For you</span>
           </a>
 
@@ -34,15 +45,15 @@ function Sidebar() {
             <span>My Library</span>
           </a>
 
-          <div className="sidebar-disabled">
+          <a href="/library" className="sidebar-link">
             <FiEdit />
             <span>Highlights</span>
-          </div>
+          </a>
 
-          <div className="sidebar-disabled">
+          <a href="/for-you" className="sidebar-link">
             <FiSearch />
             <span>Search</span>
-          </div>
+          </a>
         </nav>
       </div>
 
@@ -52,10 +63,10 @@ function Sidebar() {
           <span>Settings</span>
         </a>
 
-        <div className="sidebar-disabled">
+        <a href="/" className="sidebar-link">
           <FiHelpCircle />
           <span>Help & Support</span>
-        </div>
+        </a>
 
         {user ? (
           <button className="sidebar-button" onClick={handleLogout}>
