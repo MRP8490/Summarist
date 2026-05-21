@@ -40,6 +40,7 @@ function Sidebar() {
             <FiHome />
             <span>For you</span>
           </Link>
+          
 
           <Link to="/library" className="sidebar-link">
             <FiBookmark />
@@ -55,6 +56,13 @@ function Sidebar() {
             <FiSearch />
             <span>Search</span>
           </Link>
+          <div className="sidebar-fonts">
+  <span>Aa</span>
+  <span>Aa</span>
+  <span>Aa</span>
+  <span>Aa</span>
+</div>
+          
         </nav>
       </div>
 
@@ -68,6 +76,7 @@ function Sidebar() {
           <FiHelpCircle />
           <span>Help & Support</span>
         </Link>
+        
 
         {user ? (
           <button className="sidebar-button" onClick={handleLogout}>

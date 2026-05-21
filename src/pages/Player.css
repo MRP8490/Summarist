@@ -1,57 +1,142 @@
 .player-page {
   margin-left: 240px;
-  padding: 40px;
-  padding-bottom: 140px;
+  padding: 24px 40px 140px;
+}
+
+.player-content {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.player-content h1 {
+  margin-bottom: 24px;
 }
 
 .player-summary {
   white-space: pre-line;
   line-height: 1.7;
-  max-width: 900px;
+  color: #032b41;
 }
 
-.audio-player {
+.custom-audio-player {
   position: fixed;
   bottom: 0;
   left: 240px;
   right: 0;
+  height: 96px;
   background: #032b41;
   color: white;
-  padding: 16px 24px;
+  padding: 16px 32px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
 }
 
-.audio-player img {
-  width: 48px;
-  height: 48px;
+.player-book-info {
+  position: absolute;
+  left: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 320px;
+}
+
+.player-book-info img {
+  width: 52px;
+  height: 52px;
   object-fit: cover;
 }
 
-.audio-info h4,
-.audio-info p {
+.player-book-info h4,
+.player-book-info p {
   margin: 0;
 }
 
-.audio-player audio {
-  flex: 1;
+.player-book-info p {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.player-controls button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  position: relative;
+}
+
+.player-controls button span {
+  font-size: 10px;
+  position: absolute;
+  top: 8px;
+  left: 9px;
+}
+
+.main-play-button {
+  width: 48px;
+  height: 48px;
+  background: white !important;
+  color: #032b41 !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #f0f3f5 25%, #e3e9ed 50%, #f0f3f5 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.2s infinite;
+  border-radius: 8px;
+}
+
+.player-skeleton-title {
+  width: 60%;
+  height: 40px;
+  margin-bottom: 24px;
+}
+
+.player-skeleton-line {
+  width: 100%;
+  height: 20px;
+  margin-bottom: 16px;
+}
+
+.player-skeleton-bar {
+  position: fixed;
+  bottom: 0;
+  left: 240px;
+  right: 0;
+  height: 96px;
+  border-radius: 0;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 @media (max-width: 768px) {
   .player-page {
     margin-left: 0;
-    padding: 96px 20px 160px;
   }
 
-  .audio-player {
+  .custom-audio-player,
+  .player-skeleton-bar {
     left: 0;
-    flex-wrap: wrap;
-    padding: 16px;
-  }
-
-  .audio-player audio {
-    width: 100%;
-    flex: auto;
   }
 }
