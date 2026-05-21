@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  apiKey: "AIzaSyDDzSOoNwvXdwu745SumtRrky3noj8mCes",
   authDomain: "summarist-project-505e4.firebaseapp.com",
   projectId: "summarist-project-505e4",
   storageBucket: "summarist-project-505e4.firebasestorage.app",

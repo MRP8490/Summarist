@@ -15,11 +15,17 @@ function AuthModal({ onClose }) {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  async function handleGuestLogin() {
+async function handleGuestLogin() {
+  try {
+    setError("");
     await signInAnonymously(auth);
     onClose();
     navigate("/for-you");
+  } catch (err) {
+    console.log(err);
+    setError(err.message);
   }
+}
 
   async function handleSubmit(e) {
     e.preventDefault();
